@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reservation_info SYSTEM "rez.dtd">
+<reservation_info>
+    <rezervare numar="1">
+        <customer>
+            <name>Mihai Vasile</name>
+            <address>Bucuresti</address>
+            <phone>0123456789</phone>
+            <email>mihaivasile@example.com</email>
+            <cnp>12345678910</cnp>
+            <age>25</age>
+            <driving_license>Valid</driving_license>
+        </customer>
+        <car>
+            <model>Toyota Corolla</model>
+            <year>2016</year>
+            <engine_capacity>2.0</engine_capacity>
+            <transmission>manual</transmission>
+            <options>GPS, scaun copil </options>
+            <rate>50</rate>
+        </car>
+        <pickup_date>2023-03-25</pickup_date>
+        <return_date>2023-03-28</return_date>
+        <payment>
+            <card_type>Visa</card_type>
+            <card_number>1234-5678-1234-1223</card_number>
+            <expiration_date>04/25</expiration_date>
+            <total_cost>150</total_cost>
+        </payment>
+    </rezervare>
+    <rezervare numar="2">
+        <customer>
+            <name>Mihai Vasile</name>
+            <address>Bucuresti</address>
+            <phone>0123456789</phone>
+            <email>mihaivasile@example.com</email>
+            <cnp>12345678910</cnp>
+            <age>25</age>
+            <driving_license>Valid</driving_license>
+        </customer>
+        <car>
+            <model>bmw</model>
+            <year>2016</year>
+            <engine_capacity>2.0</engine_capacity>
+            <transmission>manual</transmission>
+            <options>GPS, scaun copil </options>
+            <rate>50</rate>
+        </car>
+        <pickup_date>2023-03-25</pickup_date>
+        <return_date>2023-03-28</return_date>
+        <payment>
+            <card_type>Visa</card_type>
+            <card_number>1234-5678-1234-1223</card_number>
+            <expiration_date>04/25</expiration_date>
+            <total_cost>150</total_cost>
+        </payment>
+    </rezervare>
+</reservation_info>

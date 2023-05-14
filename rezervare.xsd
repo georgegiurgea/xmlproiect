@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="reservation_info">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="unbounded" ref="rezervare" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rezervare">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="customer" />
+        <xs:element ref="car" />
+        <xs:element ref="pickup_date" />
+        <xs:element ref="return_date" />
+        <xs:element ref="payment" />
+      </xs:sequence>
+      <xs:attribute name="numar" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="customerType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" />
+      <xs:element name="address" type="xs:string" />
+      <xs:element name="phone" type="xs:string" />
+      <xs:element name="email" type="xs:string" />
+      <xs:element name="cnp" type="xs:string" />
+      <xs:element name="age" type="xs:string" />
+      <xs:element name="driving_license" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="extendedCustomerType">
+    <xs:complexContent>
+      <xs:extension base="customerType">
+        <xs:sequence>
+          <xs:element name="loyalty_points" type="xs:integer" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="customer" type="extendedCustomerType" />
+
+  <xs:element name="car">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="model" type="xs:string" />
+        <xs:element name="year" type="xs:string" />
+        <xs:element name="engine_capacity" type="xs:string" />
+        <xs:element name="transmission" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="options" type="xs:string" />
+        <xs:element name="rate" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:simpleType name="dataridicare">
+    <xs:restriction base="xs:date">
+      <xs:minInclusive value="2023-05-01"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="datareturnare">
+    <xs:restriction base="xs:date">
+      <xs:minInclusive value="2023-05-03"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:element name="pickup_date" type="dataridicare" />
+  <xs:element name="return_date" type="datareturnare" />
+  
+  <xs:element name="payment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="card_type" type="xs:string" />
+        <xs:element name="card_number" type="xs:string" />
+        <xs:element name="expiration_date" type="xs:string" />
+        <xs:element name="total_cost" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

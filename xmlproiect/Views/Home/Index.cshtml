@@ -1,0 +1,103 @@
+﻿@model xmlproiect.Models.ReservationInfo
+@{
+    ViewData["Title"] = "Home Page";
+    string tip = ViewData["tip"] as string ;
+    string uploadedFilePath = ViewData["UploadedFilePath"] as string;
+    bool showTransformButton = !string.IsNullOrEmpty(uploadedFilePath);
+}
+
+
+@if (tip != null)
+{
+    
+<h3>Acest  @tip</h3>    
+}
+@if (showTransformButton)
+{
+    <form asp-action="TransformToXslt" class="py-1 px-1 mx-2" method="post">
+        <input type="hidden" name="filePath" value="@uploadedFilePath" />
+        <button type="submit" class="btn btn-primary">Transform to XSLT and Display</button>
+    </form>
+}
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @ViewData["ErrorMessage"]
+    </div>
+}
+
+<form asp-controller="Home" asp-action="UploadFile" method="post" enctype="multipart/form-data" class="my-4 mx-3 col-3">
+    <div class="mb-3">
+        <input type="file" name="file" placeholder="Alegeti un fisier" accept=".xml,.json" required class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+
+
+
+@if (Model != null)
+{
+    <div class="my-2 ">
+        <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Client Nume</th>
+                <th>Client Cnp</th>
+                <th>Client Adresa</th>
+                <th>Client Varsta</th>
+                <th>Client Permis de conducere</th>
+                <th>Client Telefon</th>
+
+                <th>Masina Model</th>
+                <th>Masina capacitate motor </th>
+                <th>Masina cutie viteza</th>
+                <th>Masina an</th>
+                <th>Masina optiuni</th>
+                <th>Masina cost</th>
+                
+
+                <th>Data primire</th>
+                <th>Data returnare</th>
+
+                <th>Tip card</th>
+                <th>Numar card</th>
+                <th>data expirare</th>
+                <th>Cost total</th>
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reservation in Model.Reservations)
+            {
+                <tr>
+                    <td>@reservation.Number</td>
+                    <td>@reservation.Customer.Name</td>
+                    <td>@reservation.Customer.CNP</td>
+                    <td>@reservation.Customer.Address</td>
+                    <td>@reservation.Customer.Age</td>
+                    <td>@reservation.Customer.DrivingLicense</td>
+                    <td>@reservation.Customer.Phone</td>
+
+                    <td>@reservation.Car.Model</td>
+                    <td>@reservation.Car.EngineCapacity</td>
+                    <td>@reservation.Car.Transmission</td>
+                    <td>@reservation.Car.Options</td>
+                    <td>@reservation.Car.Year</td>
+                    <td>@reservation.Car.Rate</td>
+                    
+                    <td>@reservation.PickupDate.ToShortDateString()</td>
+                    <td>@reservation.ReturnDate.ToShortDateString()</td>
+                    <td>@reservation.Payment.CardType</td>
+                    <td>@reservation.Payment.CardNumber</td>
+                    <td>@reservation.Payment.ExpirationDate</td>
+                    <td>@reservation.Payment.TotalCost</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+}
